@@ -4,7 +4,7 @@ import { AppState, AppStateStatus } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 type EffectCleanup = undefined | void | (() => void);
-type EffectCallback = () => EffectCleanup;
+type EffectCallback = () => EffectCleanup | Promise<EffectCleanup>;
 
 const cleanupIfNeeded = (cleanup: RefObject<EffectCleanup | undefined>) => {
   if (cleanup && cleanup.current && typeof cleanup.current === 'function') {
